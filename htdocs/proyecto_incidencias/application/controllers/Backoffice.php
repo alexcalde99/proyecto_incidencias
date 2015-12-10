@@ -21,6 +21,7 @@ class Backoffice extends CI_Controller
     public function index(){
 
         $this->load->view('login.php');
+
     }
 
 
@@ -76,6 +77,10 @@ class Backoffice extends CI_Controller
         $crud = new grocery_CRUD();
         //Seleccionar la tabla ROLES
         $crud->set_table('roles');
+
+        //menu despegable...dentro de field_type va la fila que se desea selecionar(nivel) y el tipo que va ser y un array con las opcioness
+        $crud -> field_type ( 'nivel' , 'dropdown' ,
+            array ( '0' => '0','1' => '1' , '2' => '2' , '3' => '3' ) ) ;
         //obtener la info de la tabla en un array, para despues mostrar
         $output = $crud->render();
 
@@ -94,6 +99,7 @@ class Backoffice extends CI_Controller
         $crud = new grocery_CRUD();
         //Seleccionar la tabla TIPOS INCIDENCIAS
         $crud->set_table('tipos_incidencias');
+
         //obtener la info de la tabla en un array, para despues mostrar
         $output = $crud->render();
 
@@ -141,7 +147,9 @@ class Backoffice extends CI_Controller
 
     function logout(){
 
-    }
+
+        }
+
 
 
 }
