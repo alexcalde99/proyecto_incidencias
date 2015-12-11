@@ -52,13 +52,24 @@ class Backoffice extends CI_Controller
     /******************************************************************************
      * funcion CRUD incidencias
      *****************************************************************************/
-
-
     function crud_incidencias(){
         //creamos objeto crud
         $crud = new grocery_CRUD();
         //Seleccionar la tabla incidencias
         $crud->set_table('incidencias');
+
+        //ocultar numero de incidencias xq se pondra automaticamente
+        $crud->field_type('numero', 'hidden');
+        $crud->display_as("idtipo", "Tipo de Incidencia");
+
+        //menu despegable para tipo de inciencia
+        $crud -> field_type ( 'idtipo' , 'dropdown' ,
+            array ( '0' => 'INF','1' => 'MOBIL' , '2' => 'OBR' , '3' => 'FERR',
+                '4'=> 'FUS' , '5'=>'ELECT','6'=>'CRIS','7'=>'PERS','8'=>'PINT',
+                '9'=>'CONS','10'=>'FONT','10'=>'COMPR') ) ;
+
+
+
         //objetener la info de la tabla en un array, para despues mostrar
         $output = $crud->render();
 
@@ -71,7 +82,6 @@ class Backoffice extends CI_Controller
     /******************************************************************************
      * funcion CRUD ROLES
      *****************************************************************************/
-
     function crud_roles(){
         //creamos objeto crud
         $crud = new grocery_CRUD();
@@ -91,14 +101,35 @@ class Backoffice extends CI_Controller
     }
 
     /******************************************************************************
-     * funcion CRUD ROLES
+     * funcion CRUD tipo de incidencias
      *****************************************************************************/
-
     function crud_tipo_incidencias(){
         //creamos objeto crud
         $crud = new grocery_CRUD();
         //Seleccionar la tabla TIPOS INCIDENCIAS
         $crud->set_table('tipos_incidencias');
+
+        //cambiamos la forma de visualizar en la vista
+        $crud->display_as("codigo_tipo", "Codigo Incidencia");
+        $crud->display_as("descripcion", "Descripcion Incidencia");
+        $crud->display_as("idusuario", "ID Tecnico 1");
+
+        //menu despegable para tecnico 1...dentro de field_type
+        $crud -> field_type ( 'idusuario' , 'dropdown' ,
+            array ( '0' => 'alexcalde999@gmail.com', '1' => 'email@email.com' ,
+                '2' => 'alejandro_calderon99@gmail.com' , '3' => 'edgarshurtado@gmail.com' ) ) ;
+
+        $crud->display_as("idusuario2", "ID Tecnico 2");
+        //menu despegable para tecnico 3...dentro de field_type
+        $crud -> field_type ( 'idusuario2' , 'dropdown' ,
+            array ( '0' => 'alexcalde999@gmail.com', '1' => 'email@email.com' ,
+                '2' => 'alejandro_calderon99@gmail.com' , '3' => 'edgarshurtado@gmail.com' ) ) ;
+
+        $crud->display_as("idusuario3", "ID Tecnico 3");
+        //menu despegable para tecnico 3...dentro de field_type
+        $crud -> field_type ( 'idusuario3' , 'dropdown' ,
+            array ( '0' => 'alexcalde999@gmail.com', '1' => 'email@email.com' ,
+                '2' => 'alejandro_calderon99@gmail.com' , '3' => 'edgarshurtado@gmail.com' ) ) ;
 
         //obtener la info de la tabla en un array, para despues mostrar
         $output = $crud->render();
@@ -111,7 +142,6 @@ class Backoffice extends CI_Controller
     /*/******************************************************************************
      * funcion CRUD HISTORICO INCIDENCIAS
      *****************************************************************************/
-
     function crud_historico_incidencias(){
         //creamos objeto crud
         $crud = new grocery_CRUD();
