@@ -29,7 +29,14 @@ class Users_model extends CI_Model {
         $pass=$this->encrypt->decode($pass);
         //pas esta desencriptado
 
+        $data = array(
+            'user'  => $user,
+            'password'     => $password
+
+        );
+
         if ($pass == $password) {
+            $this->session->set_userdata($data);
             return true;
         } else {
             return false;

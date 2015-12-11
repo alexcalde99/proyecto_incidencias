@@ -4,8 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Backoffice extends CI_Controller
-{
+class Backoffice extends CI_Controller{
 
     public function __construct()
     {
@@ -13,7 +12,7 @@ class Backoffice extends CI_Controller
 
         $this->load->database();
         $this->load->helper('url');
-
+        $this->load->library('session');
         $this->load->library('grocery_CRUD');
         date_default_timezone_set('Europe/Madrid');
     }
@@ -67,6 +66,9 @@ class Backoffice extends CI_Controller
             array ( '0' => 'INF','1' => 'MOBIL' , '2' => 'OBR' , '3' => 'FERR',
                 '4'=> 'FUS' , '5'=>'ELECT','6'=>'CRIS','7'=>'PERS','8'=>'PINT',
                 '9'=>'CONS','10'=>'FONT','10'=>'COMPR') ) ;
+
+
+        $crud->callback_before_insert(array($this,'enviarMail'));
 
 
 
@@ -162,7 +164,12 @@ class Backoffice extends CI_Controller
     }
 
 
+    function enviarMail($to, $subject, $message){
 
+        $this->load->model('Email_Modelo');
+        $estadoEmail = $this->Email_Modelo->enviarEmail($to, $subject, $message);
+        $this->load->view('home/index', $estadoEmail);
+    }
 
 
 
@@ -177,6 +184,9 @@ class Backoffice extends CI_Controller
 
     function logout(){
 
+        $this->session->sess_destroy();
+        $this->session->unset_userdata('');
+        redirect('home/index');
 
         }
 
