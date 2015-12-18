@@ -66,6 +66,7 @@ class Email_Modelo extends CI_Model
         $this->email->to($to);
 
         //Definimos el asunto del mensaje
+
         $this->email->subject($subject);
 
         //Definimos el mensaje a enviar

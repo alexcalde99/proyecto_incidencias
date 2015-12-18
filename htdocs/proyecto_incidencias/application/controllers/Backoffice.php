@@ -66,9 +66,9 @@ class Backoffice extends CI_Controller{
 
         //menu despegable para tipo de inciencia
         $crud -> field_type ( 'idtipo' , 'dropdown' ,
-            array ( '1' => 'INF','11' => 'MOBIL' , '2' => 'OBR' , '3' => 'FERR',
-                '4'=> 'FUS' , '5'=>'ELECT','6'=>'CRIS','7'=>'PERS','8'=>'PINT',
-                '9'=>'CONS','10'=>'FONT','10'=>'COMPR') ) ;
+            array ( '1' => 'INF','2' => 'MOBIL' , '3' => 'OBR' , '4' => 'FERR',
+                '5'=> 'FUS' , '6'=>'ELECT','7'=>'CRIS','8'=>'PERS','9'=>'PINT',
+                '10'=>'CONS','11'=>'FONT','12'=>'COMPR') ) ;
 
 
         //this xq esta en el mimso documento
@@ -194,9 +194,11 @@ class Backoffice extends CI_Controller{
 
         //convierte la fecha en un entero
         $post_array['numero']=date("YmdHi");
+
         $post_array['fecha_alta'] = date('Y-m-d H:i:s');
         $post_array['fecha_fin'] = "0000-00-00 00:00:00";
         $post_array['idusuario'] = $_SESSION['user_id'];
+
 
 
         $this->load->model('Email_Modelo');
@@ -204,8 +206,18 @@ class Backoffice extends CI_Controller{
 
 
         $to = $this->Base_Datos_Modelo->emailTecnicos($post_array['idtipo']);
+        //contrumos el sujeto del email, concatenamos el numero de incidecnias con el texto
+        $subject = $post_array['numero'];
+        $subject = 'Nueva incidencia Registrada Nº:' . $subject;
 
-        $this->Email_Modelo->enviarEmail($to,'hola','holaaaaa');
+        //contrumos el cupero del email
+        $message = $post_array['descripcion'];
+        $message = $message . "\n";
+        $message = $message . "Numero de incidencia: " . $post_array['numero'] . "\n";
+        $message = $message . "Fecha de alta: " . $post_array['fecha_alta'] .  "\n";
+
+
+        $this->Email_Modelo->enviarEmail($to,$subject,$message);
 
 
         return $post_array;
