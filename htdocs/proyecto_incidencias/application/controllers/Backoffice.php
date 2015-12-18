@@ -60,15 +60,20 @@ class Backoffice extends CI_Controller{
         //ocultar numero de incidencias xq se pondra automaticamente
         $crud->field_type('numero', 'hidden');
         $crud->display_as("idtipo", "Tipo de Incidencia");
+        $crud->field_type('fecha_alta','hidden');
+        $crud->field_type('fecha_fin','hidden');
+        $crud->field_type('idusuario','hidden');
 
         //menu despegable para tipo de inciencia
         $crud -> field_type ( 'idtipo' , 'dropdown' ,
-            array ( '0' => 'INF','1' => 'MOBIL' , '2' => 'OBR' , '3' => 'FERR',
+            array ( '1' => 'INF','11' => 'MOBIL' , '2' => 'OBR' , '3' => 'FERR',
                 '4'=> 'FUS' , '5'=>'ELECT','6'=>'CRIS','7'=>'PERS','8'=>'PINT',
                 '9'=>'CONS','10'=>'FONT','10'=>'COMPR') ) ;
 
 
-        $crud->callback_before_insert(array($this,'enviarMail'));
+        //this xq esta en el mimso documento
+        $crud->callback_before_insert(array($this,'insertCallbackIncidencias'));
+
 
 
 
@@ -164,18 +169,6 @@ class Backoffice extends CI_Controller{
     }
 
 
-    function enviarMail($to, $subject, $message){
-
-        $this->load->model('Email_Modelo');
-        $estadoEmail = $this->Email_Modelo->enviarEmail($to, $subject, $message);
-        $this->load->view('home/index', $estadoEmail);
-    }
-
-
-
-
-
-
 
 
     /******************************************************************************
@@ -191,5 +184,33 @@ class Backoffice extends CI_Controller{
         }
 
 
+    /******************************************************************************
+     * funcion CALLBACK       *
+     *****************************************************************************/
+
+
+
+    public function insertCallbackIncidencias($post_array){
+
+        //convierte la fecha en un entero
+        $post_array['numero']=date("YmdHi");
+        $post_array['fecha_alta'] = date('Y-m-d H:i:s');
+        $post_array['fecha_fin'] = "0000-00-00 00:00:00";
+        $post_array['idusuario'] = $_SESSION['user_id'];
+
+
+        $this->load->model('Email_Modelo');
+        $this->load->model('Base_Datos_Modelo');
+
+
+        $to = $this->Base_Datos_Modelo->emailTecnicos($post_array['idtipo']);
+
+        $this->Email_Modelo->enviarEmail($to,'hola','holaaaaa');
+
+
+        return $post_array;
+
+
+    }
 
 }

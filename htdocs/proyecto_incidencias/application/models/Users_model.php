@@ -30,6 +30,7 @@ class Users_model extends CI_Model {
         //pas esta desencriptado
 
         $data = array(
+            'user_id'=>$result->id,
             'user'  => $user,
             'password'     => $password
 
@@ -44,6 +45,8 @@ class Users_model extends CI_Model {
         }
 
     }
+
+
 
 
     /******************************************************************************
@@ -73,33 +76,6 @@ class Users_model extends CI_Model {
 
 
 
-
-
-    //////////////////////////////////////////////////////////
-    //
-    /////////////////////////////////////////////////////////
-    public function isValidUser($user,$password) {
-        $sql="SELECT  * FROM usuarios WHERE email = ? AND clave = ? ";
-        $query = $this->db->query($sql, array($user,$password));
-
-        if($query->num_rows() == 1){
-            //un fetch
-            $fila=$query->row();
-            $userData=array(
-                'user_id'=>$fila->id,
-                'user_email'=>$fila->email,
-                'user_nombre'=>$fila->nombre);
-
-
-
-            $this->session->set_userdata($userData);
-            return true;
-
-
-        }else{
-            return false;
-        }
-    }
 
 
 

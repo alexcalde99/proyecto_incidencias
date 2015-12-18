@@ -16,8 +16,7 @@ class Email_Modelo extends CI_Model
     }
 
 
-    public function enviarEmail($to, $subject, $message)
-    {
+    public function enviarEmail($to, $subject, $message){
         //Cargamos la librería email
         $this->load->library('email');
 
@@ -28,7 +27,7 @@ class Email_Modelo extends CI_Model
         $config['protocol'] = 'smtp';
 
         //El servidor de correo que utilizaremos
-        $config["smtp_host"] = 'smtp.gmail.com';
+        $config["smtp_host"] = 'ssl://smtp.gmail.com';
 
         //Nuestro usuario
         $config["smtp_user"] = 'alexcalde999@gmail.com';
@@ -37,7 +36,11 @@ class Email_Modelo extends CI_Model
         $config["smtp_pass"] = 'Sailer9a+';
 
         //El puerto que utilizará el servidor smtp
-        $config["smtp_port"] = '587';
+        $config["smtp_port"] = '465';
+
+        $config['newline'] = "\r\n";
+
+
 
         //El juego de caracteres a utilizar
         $config['charset'] = 'utf-8';
