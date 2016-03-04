@@ -36,7 +36,7 @@ class Backoffice extends CI_Controller{
         $this->load->model('Users_model');
         $crud = new grocery_CRUD();
         $crud->set_table('usuarios');
-        //para mostra la contraseña encriptada en ******* el camñpo clave que sea de tipo password..pa ocultarlo
+        //para mostra la contraseï¿½a encriptada en ******* el camï¿½po clave que sea de tipo password..pa ocultarlo
         $crud->field_type('clave','password');
         $crud->callback_before_insert(array($this->Users_model,'encriptar_usuario'));
 
@@ -73,9 +73,6 @@ class Backoffice extends CI_Controller{
 
         //this xq esta en el mimso documento
         $crud->callback_before_insert(array($this,'insertCallbackIncidencias'));
-
-
-
 
         //objetener la info de la tabla en un array, para despues mostrar
         $output = $crud->render();
@@ -156,7 +153,7 @@ class Backoffice extends CI_Controller{
         $crud->set_table('incidencias');
         //para quitar las opcinesd e editar
         $crud->unset_edit();
-        //quitar las opciones de añadir
+        //quitar las opciones de aï¿½adir
         $crud->unset_add();
         //quitar las opciones de borrar
         $crud->unset_delete();
@@ -208,7 +205,7 @@ class Backoffice extends CI_Controller{
         $to = $this->Base_Datos_Modelo->emailTecnicos($post_array['idtipo']);
         //contrumos el sujeto del email, concatenamos el numero de incidecnias con el texto
         $subject = $post_array['numero'];
-        $subject = 'Nueva incidencia Registrada Nº:' . $subject;
+        $subject = 'Nueva incidencia Registrada Nï¿½:' . $subject;
 
         //contrumos el cupero del email
         $message = $post_array['descripcion'];
