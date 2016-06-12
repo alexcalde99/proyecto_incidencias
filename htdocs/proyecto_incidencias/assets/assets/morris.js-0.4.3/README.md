@@ -69,7 +69,7 @@ Once you're all set up, you can compile, minify and run the tests using `grunt`.
 - More flexible formatters [#107](https://github.com/oesmith/morris.js/issues/107).
 - Color callbacks.
 - Decade intervals for time-axis labels.
-- Non-continous line tweaks [#116](https://github.com/oesmith/morris.js/issues/116).
+- Non-continuous line tweaks [#116](https://github.com/oesmith/morris.js/issues/116).
 - Stacked bars [#120](https://github.com/oesmith/morris.js/issues/120).
 - HTML hover [#134](https://github.com/oesmith/morris.js/issues/134).
 - yLabelFormat [#139](https://github.com/oesmith/morris.js/issues/139).

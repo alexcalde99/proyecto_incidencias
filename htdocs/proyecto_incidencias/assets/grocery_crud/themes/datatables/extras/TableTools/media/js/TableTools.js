@@ -1309,7 +1309,7 @@ TableTools.prototype = {
 	 * Set the text for the flash clip to deal with
 	 * 
 	 * This function is required for large information sets. There is a limit on the 
-	 * amount of data that can be transfered between Javascript and Flash in a single call, so
+	 * amount of data that can be transferred between Javascript and Flash in a single call, so
 	 * we use this method to build up the text in Flash by sending over chunks. It is estimated
 	 * that the data limit is around 64k, although it is undocuments, and appears to be different
 	 * between different flash versions. We chunk at 8KiB.

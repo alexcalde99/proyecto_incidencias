@@ -181,7 +181,7 @@ v.1.1.6
 	Small Bug fix - adding tinyint as a type to autogenerate the true_false type (active-inactive) for tinyint at CI 2.1
 	Fixing issue #1 - flexigrid width was always 960px. Now has always 100% width.
 v.1.1.4
-	Bug Fix - When you have unset edit and unset delete in your actions and also you have insert one or more add_action, the column Actions disapeared.
+	Bug Fix - When you have unset edit and unset delete in your actions and also you have insert one or more add_action, the column Actions disappeared.
 	Adding a new field type named "password". This is a simple transformation of the field input from text to password and it hides the password from the list grid.
 	Changing state name insert and update to... "insert" and "update" and not "add" and "edit" that was till this revision.
 	Fully compatible with codeigniter 2.1 - Changing the library of CI_Form_Validation and adding it into the library of grocery CRUD for stability.

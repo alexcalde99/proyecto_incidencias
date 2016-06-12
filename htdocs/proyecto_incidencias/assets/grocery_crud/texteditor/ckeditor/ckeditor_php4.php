@@ -45,7 +45,7 @@ class CKEditor
 	 * Example usage:
 	 * @code
 	 * $CKEditor->config['height'] = 400;
-	 * // Use @@ at the beggining of a string to ouput it without surrounding quotes.
+	 * // Use @@ at the beginning of a string to ouput it without surrounding quotes.
 	 * $CKEditor->config['width'] = '@@screen.width * 0.8';
 	 * @endcode
 	 */
