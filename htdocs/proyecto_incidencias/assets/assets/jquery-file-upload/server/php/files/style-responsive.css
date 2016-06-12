@@ -437,7 +437,7 @@ For tablets and phones
 	  background-color: none !important;  
 	}
 
-	.form-horizontal.form-row-seperated .control-label {
+	.form-horizontal.form-row-separated .control-label {
 	    float: none;
 	    width: auto;
 	    padding-top: 0;
@@ -445,7 +445,7 @@ For tablets and phones
 	    margin-left: 10px;
 	}
 
-  	.form-horizontal.form-row-seperated .controls {
+  	.form-horizontal.form-row-separated .controls {
 		border-left: 0;
     	margin-left: 10px;
   	}
